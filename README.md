@@ -21,6 +21,7 @@ You can also list any pending features and planned improvements for the project 
 ### Programming languages
 
 Angular 7
+
 C# 7.3
 
 ### Platforms
@@ -34,6 +35,7 @@ Angular
 ### Package managers
 
 NuGet
+
 Yarn
 
 ### Database technology & provider
