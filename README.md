@@ -20,7 +20,7 @@ You can also list any pending features and planned improvements for the project 
 
 ### Programming languages
 
-Angular 7
+React
 
 C# 7.3
 
@@ -30,7 +30,7 @@ C# 7.3
 
 ### Frontend framework
 
-Angular
+React
 
 ### Package managers
 
