@@ -31,8 +31,8 @@ namespace ElectionResults.Core.Services
 
         private static async Task UploadFileToStorage(Stream fileStream, string fileName)
         {
-            var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
-            var containerName = Environment.GetEnvironmentVariable("BlobContainerName");
+            var connectionString = FunctionSettings.AzureStorageConnectionString;
+            var containerName = FunctionSettings.BlobContainerName;
 
             var storageAccount = CloudStorageAccount.Parse(connectionString);
             var blobClient = storageAccount.CreateCloudBlobClient();
