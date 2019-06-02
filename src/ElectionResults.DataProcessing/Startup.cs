@@ -11,6 +11,7 @@ namespace ElectionResults.DataProcessing
     {
         public void Configure(IWebJobsBuilder builder)
         {
+            builder.Services.AddTransient<ICsvDownloaderJob, CsvDownloaderJob>();
             builder.Services.AddTransient<IBlobUploader, BlobUploader>();
             builder.Services.AddTransient<IResultsSource, ResultsSource>();
         }

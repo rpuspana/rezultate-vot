@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using ElectionResults.Core.Services;
 using Microsoft.Azure.WebJobs;
@@ -8,29 +7,18 @@ namespace ElectionResults.DataProcessing
 {
     public class CsvDownloader
     {
-        private readonly IBlobUploader _blobUploader;
-        private readonly IResultsSource _resultsSource;
+        private readonly ICsvDownloaderJob _csvDownloaderJob;
 
-        public CsvDownloader(IBlobUploader blobUploader, IResultsSource resultsSource)
+        public CsvDownloader(ICsvDownloaderJob csvDownloaderJob)
         {
-            _blobUploader = blobUploader;
-            _resultsSource = resultsSource;
+            _csvDownloaderJob = csvDownloaderJob;
         }
 
         [FunctionName("CsvDownloader")]
         public async Task Run([TimerTrigger("%ScheduleTriggerTime%")]TimerInfo myTimer, ILogger log, ExecutionContext context)
         {
             FunctionSettings.Initialize(context);
-            var results = await _resultsSource.GetListOfFilesWithElectionResults();
-
-            var timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-
-            foreach (var resultsFile in results)
-            {
-                var fileName = $"{resultsFile.Id}_{timestamp}_.csv";
-                resultsFile.Name = fileName;
-                await _blobUploader.UploadFromUrl(resultsFile);
-            }
+            await _csvDownloaderJob.DownloadFilesToBlobStorage();
         }
     }
 }
