@@ -20,25 +20,21 @@ You can also list any pending features and planned improvements for the project 
 
 ### Programming languages
 
-React
-
-C# 7.3
+C# 7
 
 ### Platforms
 
-.NET Core 2.2
-
-### Frontend framework
-
-React
+.NET Core 2.1
 
 ### Package managers
 
 NuGet
 
-Yarn
-
 ### Database technology & provider
+
+Azure Blob Storage
+
+Azure Table Storage
 
 ## Repos and projects
 
