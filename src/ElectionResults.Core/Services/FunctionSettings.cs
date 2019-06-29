@@ -20,5 +20,7 @@ namespace ElectionResults.Core.Services
         public static string AzureStorageConnectionString => _config["AzureWebJobsStorage"];
 
         public static string BlobContainerName => _config["BlobContainerName"];
+
+        public static string AzureTableName => _config["AzureTableName"];
     }
 }

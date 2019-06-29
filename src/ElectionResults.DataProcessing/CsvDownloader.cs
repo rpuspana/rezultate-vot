@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using ElectionResults.Core.Services;
 using Microsoft.Azure.WebJobs;
@@ -15,9 +16,10 @@ namespace ElectionResults.DataProcessing
         }
 
         [FunctionName("CsvDownloader")]
-        public async Task Run([TimerTrigger("%ScheduleTriggerTime%")]TimerInfo myTimer, ILogger log, ExecutionContext context)
+        public async Task Run([TimerTrigger("%ScheduleTriggerTime%", RunOnStartup = true)]TimerInfo myTimer, ILogger log, ExecutionContext context)
         {
             FunctionSettings.Initialize(context);
+            log.LogInformation($"Executing at {DateTime.Now}");
             await _csvDownloaderJob.DownloadFilesToBlobStorage();
         }
     }

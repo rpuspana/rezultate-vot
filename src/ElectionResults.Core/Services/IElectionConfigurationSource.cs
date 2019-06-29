@@ -4,8 +4,10 @@ using ElectionResults.Core.Models;
 
 namespace ElectionResults.Core.Services
 {
-    public interface IResultsSource
+    public interface IElectionConfigurationSource
     {
         Task<List<ElectionResultsFile>> GetListOfFilesWithElectionResults();
+
+        Task<List<Candidate>> GetListOfCandidates();
     }
 }
