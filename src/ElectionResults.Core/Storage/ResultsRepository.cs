@@ -15,11 +15,11 @@ namespace ElectionResults.Core.Storage
                 storageContext.AddAttributeMapper();
                 storageContext.AddEntityMapper(typeof(ElectionStatistics), new DynamicTableEntityMapper
                 {
-                    PartitionKeyFormat = "Id",
+                    PartitionKeyFormat = "Location",
                     RowKeyFormat = "Id",
                     TableName = FunctionSettings.AzureTableName
                 });
-                await storageContext.CreateTableAsync(typeof(ElectionStatistics), true);
+                await storageContext.CreateTableAsync(typeof(ElectionStatistics));
 
                 await storageContext.MergeOrInsertAsync(electionStatistics);
             }

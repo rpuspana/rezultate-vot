@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 
 namespace ElectionResults.Core.Infrastructure
 {
@@ -12,9 +13,10 @@ namespace ElectionResults.Core.Infrastructure
             _config = configurationBuilder
                 .SetBasePath(context.FunctionAppDirectory)
                 .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile("secrets.settings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
+                .AddJsonFile("secrets.settings.json", optional: true, reloadOnChange: true)
                 .Build();
+            Console.WriteLine(_config["AzureWebJobsStorage"]);
         }
 
         public static string AzureStorageConnectionString => _config["AzureWebJobsStorage"];
