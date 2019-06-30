@@ -5,6 +5,6 @@
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "ScheduleTriggerTime": "0 */5 * * * *",
     "BlobContainerName": "election-results",
-    "AzureTableName": "election-statistics"
+    "AzureTableName": "ElectionStatistics"
   }
 }

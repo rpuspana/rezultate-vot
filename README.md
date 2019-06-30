@@ -54,15 +54,15 @@ TBD
 - Install the [Azure Functions CLI](https://github.com/Azure/azure-functions-core-tools)
 - Install [Azure Storage Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409) (for Linux use [Azurite](https://github.com/azure/azurite))
 - Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) 
-- cd src\ElectionResults.DataProcessing
-- func start
+- `cd src\ElectionResults.DataProcessing`
+- `func start`
 
 By default, the functions are configured to use local storage, this can be changed in local.settings.json by modifying the AzureWebJobsStorage key with a valid Azure Storage Key.
 To see the blob container where the CSV files are downloaded, open **Azure Storage Explorer** then navigate to **Local & Attached** -> **Storage Accounts** -> **Emulator** -> **Blob Containers**
 
 To see the table where the processed results are stored open **Azure Storage Explorer** then navigate to **Local & Attached** -> **Storage Accounts** -> **Emulator** -> **Tables**
 
-#### Settings
+#### Configuration
 Most of the settings are stored in local.settings.json and the file is not ignored because it doesn't contain sensitive data.
 In this file you'll find the following settings:
 - **AzureWebJobsStorage**: "UseDevelopmentStorage=true"
@@ -71,7 +71,7 @@ In this file you'll find the following settings:
   - runs the CSV downloader function every 5 minutes
 - **BlobContainerName**: "election-results"
   - the name of the blob container where CSV files are downloaded
-- **AzureTableName**: "election-statistics"
+- **AzureTableName**: "ElectionStatistics"
   - the name of the Azure Table where the JSON statistics are stored
   
 If you want to use your own Azure Storage account for development, you should follow the following steps:
@@ -87,8 +87,8 @@ Example:
 `
 
 #### Run unit tests
-- cd tests\ElectionResults.Tests
-- dotnet test
+- `cd tests\ElectionResults.Tests`
+- `dotnet test`
 
 
 ## Feedback
