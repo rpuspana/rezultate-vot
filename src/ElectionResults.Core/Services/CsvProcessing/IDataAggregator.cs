@@ -8,21 +8,18 @@ namespace ElectionResults.Core.Services.CsvProcessing
     public interface IDataAggregator
     {
         Task<Result<ElectionResultsData>> RetrieveElectionData(string csvContent);
+
+        List<ICsvParser> CsvParsers { get; set; }
     }
 
     public class DataAggregator : IDataAggregator
     {
-        private readonly List<ICsvParser> _csvParsers;
-
-        public DataAggregator(List<ICsvParser> csvParsers)
-        {
-            _csvParsers = csvParsers;
-        }
+        public List<ICsvParser> CsvParsers { get; set;  } = new List<ICsvParser>();
 
         public async Task<Result<ElectionResultsData>> RetrieveElectionData(string csvContent)
         {
             var electionResults = new ElectionResultsData();
-            foreach (var csvParser in _csvParsers)
+            foreach (var csvParser in CsvParsers)
             {
                 await csvParser.Parse(electionResults, csvContent);
             }

@@ -1,4 +1,6 @@
-﻿using ElectionResults.Core.Services;
+﻿using ElectionResults.Core.Infrastructure;
+using ElectionResults.Core.Services.BlobContainer;
+using ElectionResults.Core.Services.CsvDownload;
 using ElectionResults.Core.Storage;
 using ElectionResults.DataProcessing;
 using Microsoft.Azure.WebJobs;
@@ -16,6 +18,7 @@ namespace ElectionResults.DataProcessing
             builder.Services.AddTransient<IBlobUploader, BlobUploader>();
             builder.Services.AddTransient<IElectionConfigurationSource, ElectionConfigurationSource>();
             builder.Services.AddTransient<IResultsRepository, ResultsRepository>();
+            builder.Services.AddTransient<IBlobProcessor, BlobProcessor>();
         }
     }
 }

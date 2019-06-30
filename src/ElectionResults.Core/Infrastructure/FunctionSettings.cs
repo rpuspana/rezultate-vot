@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace ElectionResults.Core.Services
+namespace ElectionResults.Core.Infrastructure
 {
     public static class FunctionSettings
     {

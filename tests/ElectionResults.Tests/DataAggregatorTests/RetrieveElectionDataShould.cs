@@ -19,8 +19,8 @@ namespace ElectionResults.Tests.DataAggregatorTests
                 firstParser,
                 secondParser
             };
-            var dataAggregator = new DataAggregator(csvParsers);
-
+            var dataAggregator = new DataAggregator();
+            dataAggregator.CsvParsers = csvParsers;
             await dataAggregator.RetrieveElectionData("");
 
             firstParser.WasInvoked.Should().BeTrue();
@@ -30,11 +30,13 @@ namespace ElectionResults.Tests.DataAggregatorTests
         [Fact]
         public async Task build_election_results_model_with_results_from_each_parser()
         {
-            var dataAggregator = new DataAggregator(new List<ICsvParser>
+            var csvParsers = new List<ICsvParser>
             {
                 new FakeCandidatesParser(),
                 new FakePollingStationsParser()
-            });
+            };
+            var dataAggregator = new DataAggregator();
+            dataAggregator.CsvParsers = csvParsers;
 
             var aggregationResult = await dataAggregator.RetrieveElectionData("");
 

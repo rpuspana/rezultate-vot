@@ -2,17 +2,18 @@
 
 namespace ElectionResults.Core.Models
 {
-    public class FileParsingResult
+    public class ElectionStatistics
     {
-        [RowKey]
         [PartitionKey]
         public string Id { get; set; }
 
-        public string ProcessedData { get; set; }
+        public string StatisticsJson { get; set; }
 
+        [RowKey]
         public string Location { get; set; }
 
-        public long Timestamp { get; set; }
+        public long FileTimestamp { get; set; }
+
         public string Type { get; set; }
     }
 }

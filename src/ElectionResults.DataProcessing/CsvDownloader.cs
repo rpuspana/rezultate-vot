@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using ElectionResults.Core.Services;
+using ElectionResults.Core.Infrastructure;
+using ElectionResults.Core.Services.CsvDownload;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 

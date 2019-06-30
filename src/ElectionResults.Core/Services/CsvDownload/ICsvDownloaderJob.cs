@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace ElectionResults.Core.Services
+namespace ElectionResults.Core.Services.CsvDownload
 {
     public interface ICsvDownloaderJob
     {

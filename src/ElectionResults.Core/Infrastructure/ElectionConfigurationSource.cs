@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ElectionResults.Core.Models;
 
-namespace ElectionResults.Core.Services
+namespace ElectionResults.Core.Infrastructure
 {
     public class ElectionConfigurationSource : IElectionConfigurationSource
     {
@@ -22,6 +22,7 @@ namespace ElectionResults.Core.Services
 
         public Task<List<Candidate>> GetListOfCandidates()
         {
+            //TODO: This list will be retrieved from a configuration source
             return Task.FromResult(new List<Candidate>
             {
                 new Candidate

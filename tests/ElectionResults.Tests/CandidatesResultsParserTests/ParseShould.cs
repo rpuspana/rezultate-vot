@@ -13,11 +13,10 @@ namespace ElectionResults.Tests.CandidatesResultsParserTests
         {
             var candidatesResultsParser = new TestableCandidatesResultsParser();
             candidatesResultsParser.ParsedCandidates = new List<Candidate>();
-            var electionResultsData = new ElectionResultsData();
 
-            await candidatesResultsParser.Parse(electionResultsData, "");
+            var result = await candidatesResultsParser.Parse(null, "");
 
-            electionResultsData.Candidates.Should().NotBeNull();
+            result.Value.Candidates.Should().NotBeNull();
         }
 
         [Theory]

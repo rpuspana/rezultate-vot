@@ -19,7 +19,7 @@ namespace ElectionResults.Core.Services.CsvProcessing
             Candidates = Config.Candidates;
         }
 
-        public async Task<Result> Parse(ElectionResultsData electionResultsData, string csvContent)
+        public async Task<Result<ElectionResultsData>> Parse(ElectionResultsData electionResultsData, string csvContent)
         {
             if (electionResultsData == null)
                 electionResultsData = new ElectionResultsData();

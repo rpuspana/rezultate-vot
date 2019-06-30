@@ -6,6 +6,6 @@ namespace ElectionResults.Core.Services.CsvProcessing
 {
     public interface ICsvParser
     {
-        Task<Result> Parse(ElectionResultsData electionResultsData, string csvContent);
+        Task<Result<ElectionResultsData>> Parse(ElectionResultsData electionResultsData, string csvContent);
     }
 }

@@ -8,10 +8,10 @@ namespace ElectionResults.Tests.DataAggregatorTests.Fakes
 {
     public class FakePollingStationsParser : ICsvParser
     {
-        public Task<Result> Parse(ElectionResultsData electionResultsData, string csvContent)
+        public Task<Result<ElectionResultsData>> Parse(ElectionResultsData electionResultsData, string csvContent)
         {
             electionResultsData.PollingStations = new List<PollingStation>();
-            return Task.FromResult(Result.Ok());
+            return Task.FromResult(Result.Ok(electionResultsData));
         }
     }
 }

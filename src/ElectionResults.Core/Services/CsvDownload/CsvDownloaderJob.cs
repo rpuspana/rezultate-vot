@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
+using ElectionResults.Core.Infrastructure;
 using ElectionResults.Core.Models;
+using ElectionResults.Core.Services.BlobContainer;
 
-namespace ElectionResults.Core.Services
+namespace ElectionResults.Core.Services.CsvDownload
 {
     public class CsvDownloaderJob: ICsvDownloaderJob
     {

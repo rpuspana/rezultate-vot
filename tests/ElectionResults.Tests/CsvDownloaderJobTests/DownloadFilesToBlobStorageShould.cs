@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ElectionResults.Core.Infrastructure;
 using ElectionResults.Core.Models;
-using ElectionResults.Core.Services;
+using ElectionResults.Core.Services.BlobContainer;
+using ElectionResults.Core.Services.CsvDownload;
 using NSubstitute;
 using Xunit;
 

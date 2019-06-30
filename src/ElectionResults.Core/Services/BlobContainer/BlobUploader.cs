@@ -2,10 +2,11 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using ElectionResults.Core.Infrastructure;
 using ElectionResults.Core.Models;
 using Microsoft.WindowsAzure.Storage;
 
-namespace ElectionResults.Core.Services
+namespace ElectionResults.Core.Services.BlobContainer
 {
     public class BlobUploader : IBlobUploader
     {
