@@ -4,14 +4,17 @@ using CSharpFunctionalExtensions;
 using ElectionResults.Core.Models;
 using ElectionResults.Core.Services.CsvProcessing;
 
-namespace ElectionResults.Tests.DataAggregatorTests.Fakes
+namespace ElectionResults.Tests.StatisticsAggregatorTests.Fakes
 {
-    public class FakePollingStationsParser : ICsvParser
+    public class FakeCandidatesParser : ICsvParser
     {
         public Task<Result<ElectionResultsData>> Parse(ElectionResultsData electionResultsData, string csvContent)
         {
-            electionResultsData.PollingStations = new List<PollingStation>();
+            WasInvoked = true;
+            electionResultsData.Candidates = new List<Candidate>();
             return Task.FromResult(Result.Ok(electionResultsData));
         }
+
+        public bool WasInvoked { get; set; }
     }
 }

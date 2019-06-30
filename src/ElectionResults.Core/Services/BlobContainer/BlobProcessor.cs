@@ -12,16 +12,16 @@ namespace ElectionResults.Core.Services.BlobContainer
     {
         private readonly IResultsRepository _resultsRepository;
         private readonly IElectionConfigurationSource _electionConfigurationSource;
-        private readonly IDataAggregator _dataAggregator;
+        private readonly IStatisticsAggregator _statisticsAggregator;
 
         public BlobProcessor(IResultsRepository resultsRepository,
             IElectionConfigurationSource electionConfigurationSource,
-            IDataAggregator dataAggregator)
+            IStatisticsAggregator statisticsAggregator)
         {
             _resultsRepository = resultsRepository;
             _electionConfigurationSource = electionConfigurationSource;
-            _dataAggregator = dataAggregator;
-            _dataAggregator.CsvParsers = new List<ICsvParser>
+            _statisticsAggregator = statisticsAggregator;
+            _statisticsAggregator.CsvParsers = new List<ICsvParser>
             {
                 new CandidatesResultsParser()
             };
@@ -31,7 +31,7 @@ namespace ElectionResults.Core.Services.BlobContainer
         {
             Config.Candidates = await _electionConfigurationSource.GetListOfCandidates();
             var csvContent = await ReadCsvContent(csvStream);
-            var aggregationResult = await _dataAggregator.RetrieveElectionData(csvContent);
+            var aggregationResult = await _statisticsAggregator.RetrieveElectionData(csvContent);
             if (aggregationResult.IsSuccess)
             {
                 var electionStatistics = FileNameParser.BuildElectionStatistics(fileName, aggregationResult.Value);

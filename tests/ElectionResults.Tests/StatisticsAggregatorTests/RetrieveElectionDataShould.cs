@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ElectionResults.Core.Services.CsvProcessing;
-using ElectionResults.Tests.DataAggregatorTests.Fakes;
+using ElectionResults.Tests.StatisticsAggregatorTests.Fakes;
 using FluentAssertions;
 using Xunit;
 
-namespace ElectionResults.Tests.DataAggregatorTests
+namespace ElectionResults.Tests.StatisticsAggregatorTests
 {
     public class RetrieveElectionDataShould
     {
@@ -19,9 +19,8 @@ namespace ElectionResults.Tests.DataAggregatorTests
                 firstParser,
                 secondParser
             };
-            var dataAggregator = new DataAggregator();
-            dataAggregator.CsvParsers = csvParsers;
-            await dataAggregator.RetrieveElectionData("");
+            var statisticsAggregator = new StatisticsAggregator { CsvParsers = csvParsers };
+            await statisticsAggregator.RetrieveElectionData("");
 
             firstParser.WasInvoked.Should().BeTrue();
             secondParser.WasInvoked.Should().BeTrue();
@@ -35,10 +34,9 @@ namespace ElectionResults.Tests.DataAggregatorTests
                 new FakeCandidatesParser(),
                 new FakePollingStationsParser()
             };
-            var dataAggregator = new DataAggregator();
-            dataAggregator.CsvParsers = csvParsers;
+            var statisticsAggregator = new StatisticsAggregator { CsvParsers = csvParsers };
 
-            var aggregationResult = await dataAggregator.RetrieveElectionData("");
+            var aggregationResult = await statisticsAggregator.RetrieveElectionData("");
 
             aggregationResult.Value.Candidates.Should().NotBeNull();
             aggregationResult.Value.PollingStations.Should().NotBeNull();

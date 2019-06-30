@@ -14,14 +14,14 @@ namespace ElectionResults.Tests.BlobProcessorTests
 {
     public class ProcessStreamShould
     {
-        private readonly IDataAggregator _dataAggregator;
+        private readonly IStatisticsAggregator _statisticsAggregator;
         private readonly IElectionConfigurationSource _electionConfigurationSource;
         private readonly IResultsRepository _resultsRepository;
         private readonly string _fileName;
 
         public ProcessStreamShould()
         {
-            _dataAggregator = Substitute.For<IDataAggregator>();
+            _statisticsAggregator = Substitute.For<IStatisticsAggregator>();
             _electionConfigurationSource = Substitute.For<IElectionConfigurationSource>();
             _resultsRepository = Substitute.For<IResultsRepository>();
             _fileName = "a_b_1";
@@ -31,7 +31,7 @@ namespace ElectionResults.Tests.BlobProcessorTests
         public async Task convert_stream_to_string()
         {
             var blobProcessor = CreateTestableBlobProcessor();
-            MapDataAggregatorToSuccessfulResult();
+            MapStatisticsAggregatorToSuccessfulResult();
 
             await blobProcessor.ProcessStream(new MemoryStream(), _fileName);
 
@@ -42,29 +42,29 @@ namespace ElectionResults.Tests.BlobProcessorTests
         public async Task apply_data_aggregators_to_the_csv_content()
         {
             var blobProcessor = CreateTestableBlobProcessor();
-            MapDataAggregatorToSuccessfulResult();
+            MapStatisticsAggregatorToSuccessfulResult();
 
             await blobProcessor.ProcessStream(new MemoryStream(), _fileName);
 
-            await _dataAggregator.ReceivedWithAnyArgs(1).RetrieveElectionData("");
+            await _statisticsAggregator.ReceivedWithAnyArgs(1).RetrieveElectionData("");
         }
 
         [Fact]
         public async Task apply_at_least_one_aggregator()
         {
             var blobProcessor = CreateTestableBlobProcessor();
-            MapDataAggregatorToSuccessfulResult();
+            MapStatisticsAggregatorToSuccessfulResult();
 
             await blobProcessor.ProcessStream(new MemoryStream(), _fileName);
 
-            _dataAggregator.CsvParsers.Should().NotBeEmpty();
+            _statisticsAggregator.CsvParsers.Should().NotBeEmpty();
         }
 
         [Fact]
         public async Task save_json_in_database()
         {
             var blobProcessor = CreateTestableBlobProcessor();
-            MapDataAggregatorToSuccessfulResult();
+            MapStatisticsAggregatorToSuccessfulResult();
 
             await blobProcessor.ProcessStream(new MemoryStream(), _fileName);
 
@@ -75,7 +75,7 @@ namespace ElectionResults.Tests.BlobProcessorTests
         public async Task initialize_candidates_from_config()
         {
             var blobProcessor = CreateTestableBlobProcessor();
-            MapDataAggregatorToSuccessfulResult();
+            MapStatisticsAggregatorToSuccessfulResult();
             MapConfigurationSourceToEmptyListOfCandidates();
 
             await blobProcessor.ProcessStream(new MemoryStream(), _fileName);
@@ -91,12 +91,12 @@ namespace ElectionResults.Tests.BlobProcessorTests
 
         private TestableBlobProcessor CreateTestableBlobProcessor()
         {
-            return new TestableBlobProcessor(_resultsRepository, _electionConfigurationSource, _dataAggregator);
+            return new TestableBlobProcessor(_resultsRepository, _electionConfigurationSource, _statisticsAggregator);
         }
 
-        private void MapDataAggregatorToSuccessfulResult()
+        private void MapStatisticsAggregatorToSuccessfulResult()
         {
-            _dataAggregator.RetrieveElectionData("")
+            _statisticsAggregator.RetrieveElectionData("")
                 .ReturnsForAnyArgs(Task.FromResult(Result.Ok(new ElectionResultsData())));
         }
     }

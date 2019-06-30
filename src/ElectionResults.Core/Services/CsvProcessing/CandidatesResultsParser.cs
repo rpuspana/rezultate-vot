@@ -14,15 +14,11 @@ namespace ElectionResults.Core.Services.CsvProcessing
     {
         protected List<Candidate> Candidates;
 
-        public CandidatesResultsParser()
-        {
-            Candidates = Config.Candidates;
-        }
-
         public async Task<Result<ElectionResultsData>> Parse(ElectionResultsData electionResultsData, string csvContent)
         {
             if (electionResultsData == null)
                 electionResultsData = new ElectionResultsData();
+            Candidates = Config.Candidates;
 
             await PopulateCandidatesListWithVotes(csvContent);
             electionResultsData.Candidates = Candidates;

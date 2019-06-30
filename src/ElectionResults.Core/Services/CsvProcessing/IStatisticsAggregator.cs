@@ -5,14 +5,14 @@ using ElectionResults.Core.Models;
 
 namespace ElectionResults.Core.Services.CsvProcessing
 {
-    public interface IDataAggregator
+    public interface IStatisticsAggregator
     {
         Task<Result<ElectionResultsData>> RetrieveElectionData(string csvContent);
 
         List<ICsvParser> CsvParsers { get; set; }
     }
 
-    public class DataAggregator : IDataAggregator
+    public class StatisticsAggregator : IStatisticsAggregator
     {
         public List<ICsvParser> CsvParsers { get; set;  } = new List<ICsvParser>();
 

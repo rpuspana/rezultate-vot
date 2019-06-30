@@ -9,7 +9,7 @@ namespace ElectionResults.Tests.BlobProcessorTests
 {
     public class TestableBlobProcessor: BlobProcessor
     {
-        public TestableBlobProcessor(IResultsRepository resultsRepository, IElectionConfigurationSource electionConfigurationSource, IDataAggregator dataAggregator) : base(resultsRepository, electionConfigurationSource, dataAggregator)
+        public TestableBlobProcessor(IResultsRepository resultsRepository, IElectionConfigurationSource electionConfigurationSource, IStatisticsAggregator statisticsAggregator) : base(resultsRepository, electionConfigurationSource, statisticsAggregator)
         {
         }
 
