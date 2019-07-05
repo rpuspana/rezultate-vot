@@ -2,10 +2,12 @@
 using System.Threading.Tasks;
 using ElectionResults.Core.Models;
 
-namespace ElectionResults.Core.Services
+namespace ElectionResults.Core.Infrastructure
 {
-    public interface IResultsSource
+    public interface IElectionConfigurationSource
     {
         Task<List<ElectionResultsFile>> GetListOfFilesWithElectionResults();
+
+        Task<List<Candidate>> GetListOfCandidates();
     }
 }

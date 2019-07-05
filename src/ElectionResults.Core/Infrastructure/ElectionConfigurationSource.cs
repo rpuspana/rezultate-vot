@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using ElectionResults.Core.Models;
 
-namespace ElectionResults.Core.Services
+namespace ElectionResults.Core.Infrastructure
 {
-    public class ResultsSource : IResultsSource
+    public class ElectionConfigurationSource : IElectionConfigurationSource
     {
         public Task<List<ElectionResultsFile>> GetListOfFilesWithElectionResults()
         {
@@ -17,6 +17,29 @@ namespace ElectionResults.Core.Services
                 new ElectionResultsFile{ Id = "FINAL_DSPR", URL = "https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_SR_EUP_FINAL.csv"},
                 new ElectionResultsFile{ Id = "PROV_RO", URL = "https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_RO_EUP_PROV.csv"},
                 new ElectionResultsFile{ Id = "PROV_DSPR", URL = "https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_SR_EUP_PROV.csv"}
+            });
+        }
+
+        public Task<List<Candidate>> GetListOfCandidates()
+        {
+            //TODO: This list will be retrieved from a configuration source
+            return Task.FromResult(new List<Candidate>
+            {
+                new Candidate
+                {
+                    Id = "g1",
+                    Name = "PSD"
+                },
+                new Candidate
+                {
+                    Id = "g2",
+                    Name = "USR-PLUS"
+                },
+                new Candidate
+                {
+                    Id = "g5",
+                    Name = "PNL"
+                }
             });
         }
     }

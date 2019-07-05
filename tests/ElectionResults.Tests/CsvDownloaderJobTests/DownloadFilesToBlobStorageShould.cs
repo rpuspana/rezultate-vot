@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ElectionResults.Core.Infrastructure;
 using ElectionResults.Core.Models;
-using ElectionResults.Core.Services;
+using ElectionResults.Core.Services.BlobContainer;
+using ElectionResults.Core.Services.CsvDownload;
 using NSubstitute;
 using Xunit;
 
@@ -11,7 +13,7 @@ namespace ElectionResults.Tests.CsvDownloaderJobTests
     public class DownloadFilesToBlobStorageShould
     {
         private IBlobUploader _blobUploader;
-        private IResultsSource _resultsSource;
+        private IElectionConfigurationSource _electionConfigurationSource;
 
         [Fact]
         public async Task RetrieveListOfCsvFiles()
@@ -21,7 +23,7 @@ namespace ElectionResults.Tests.CsvDownloaderJobTests
 
             await csvDownloaderJob.DownloadFilesToBlobStorage();
 
-            await _resultsSource.Received(1).GetListOfFilesWithElectionResults();
+            await _electionConfigurationSource.Received(1).GetListOfFilesWithElectionResults();
         }
 
         [Fact]
@@ -83,13 +85,13 @@ namespace ElectionResults.Tests.CsvDownloaderJobTests
         private CsvDownloaderJob CreatecsvDownloaderJob()
         {
             _blobUploader = Substitute.For<IBlobUploader>();
-            _resultsSource = Substitute.For<IResultsSource>();
-            return new CsvDownloaderJob(_blobUploader, _resultsSource);
+            _electionConfigurationSource = Substitute.For<IElectionConfigurationSource>();
+            return new CsvDownloaderJob(_blobUploader, _electionConfigurationSource);
         }
 
         private void CreateResultsSourceMock(params ElectionResultsFile[] files)
         {
-            _resultsSource.GetListOfFilesWithElectionResults()
+            _electionConfigurationSource.GetListOfFilesWithElectionResults()
                 .ReturnsForAnyArgs(info => Task.FromResult(files.ToList()));
         }
     }
