@@ -2,7 +2,7 @@
 
 [![GitHub contributors](https://img.shields.io/github/contributors/code4romania/rezultate-vot.svg?style=for-the-badge)](https://github.com/code4romania/rezultate-vot/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/rezultate-vot.svg?style=for-the-badge)](https://github.com/code4romania/rezultate-vot/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
 
-This project parses results published by BEC (Biroul Electoral Central) and provides real time partial results for elections in Romania.
+The project aims to be an aggregator for election information in Romania. The project will contain historic information for elections in Romania, will contain real time results for each election, as it will parse results published by BEC (Biroul Electoral Central) and it will also contain information about the budgets spent during the electoral campaign.
 
 [See the project live](insert_link_here)
 
