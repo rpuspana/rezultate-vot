@@ -28,17 +28,82 @@ namespace ElectionResults.Core.Infrastructure
                 new Candidate
                 {
                     Id = "g1",
-                    Name = "PSD"
+                    Name = "PARTIDUL SOCIAL DEMOCRAT"
                 },
                 new Candidate
                 {
                     Id = "g2",
-                    Name = "USR-PLUS"
+                    Name = "ALIANȚA 2020 USR PLUS"
+                },
+                new Candidate
+                {
+                    Id = "g3",
+                    Name = "PARTIDUL PRO ROMÂNIA"
+                },
+                new Candidate
+                {
+                    Id = "g4",
+                    Name = "UNIUNEA DEMOCRATĂ MAGHIARĂ DIN ROMÂNIA"
                 },
                 new Candidate
                 {
                     Id = "g5",
-                    Name = "PNL"
+                    Name = "PARTIDUL NAȚIONAL LIBERAL"
+                },
+                new Candidate
+                {
+                    Id = "g6",
+                    Name = "PARTIDUL ALIANȚA LIBERALILOR ȘI DEMOCRAȚILOR - ALDE"
+                },
+                new Candidate
+                {
+                    Id = "g7",
+                    Name = "PARTIDUL PRODEMO"
+                },
+                new Candidate
+                {
+                    Id = "g8",
+                    Name = "PARTIDUL MIȘCAREA POPULARĂ"
+                },
+                new Candidate
+                {
+                    Id = "g9",
+                    Name = "PARTIDUL SOCIALIST ROMÂN"
+                },
+                new Candidate
+                {
+                    Id = "g10",
+                    Name = "PARTIDUL SOCIAL DEMOCRAT INDEPENDENT"
+                },
+                new Candidate
+                {
+                    Id = "g11",
+                    Name = "PARTIDUL ROMÂNIA UNITĂ"
+                },
+                new Candidate
+                {
+                    Id = "g12",
+                    Name = "UNIUNEA NAȚIONALĂ PENTRU PROGRESUL ROMÂNIEI"
+                },
+                new Candidate
+                {
+                    Id = "g13",
+                    Name = "BLOCUL UNITĂȚII NAȚIONALE - BUN"
+                },
+                new Candidate
+                {
+                    Id = "g14",
+                    Name = "GREGORIANA-CARMEN TUDORAN"
+                },
+                new Candidate
+                {
+                    Id = "g15",
+                    Name = "GEORGE-NICOLAE SIMION"
+                },
+                new Candidate
+                {
+                    Id = "g16",
+                    Name = "PETER COSTEA"
                 }
             });
         }

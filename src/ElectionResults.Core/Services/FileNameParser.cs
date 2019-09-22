@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using ElectionResults.Core.Models;
 using Newtonsoft.Json;
 
@@ -10,7 +11,7 @@ namespace ElectionResults.Core.Services
         {
             var electionStatistics = new ElectionStatistics();
             var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-            electionStatistics.Id = fileNameWithoutExtension;
+            electionStatistics.Id = $"{DateTime.MaxValue.Ticks - DateTime.UtcNow.Ticks:D19}";
             var attributes = fileNameWithoutExtension.Split('_');
             electionStatistics.Location = attributes[1];
             electionStatistics.Type = attributes[0];
