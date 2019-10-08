@@ -11,20 +11,4 @@ namespace ElectionResults.Core.Services.CsvProcessing
 
         List<ICsvParser> CsvParsers { get; set; }
     }
-
-    public class StatisticsAggregator : IStatisticsAggregator
-    {
-        public List<ICsvParser> CsvParsers { get; set;  } = new List<ICsvParser>();
-
-        public async Task<Result<ElectionResultsData>> RetrieveElectionData(string csvContent)
-        {
-            var electionResults = new ElectionResultsData();
-            foreach (var csvParser in CsvParsers)
-            {
-                await csvParser.Parse(electionResults, csvContent);
-            }
-
-            return Result.Ok(electionResults);
-        }
-    }
 }

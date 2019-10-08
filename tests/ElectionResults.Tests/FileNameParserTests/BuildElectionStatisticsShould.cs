@@ -1,4 +1,5 @@
-﻿using ElectionResults.Core.Models;
+﻿using System;
+using ElectionResults.Core.Models;
 using ElectionResults.Core.Services;
 using FluentAssertions;
 using Xunit;
@@ -21,7 +22,7 @@ namespace ElectionResults.Tests.FileNameParserTests
             var electionStatistics = FileNameParser.BuildElectionStatistics("FINAL_DSPR_1561818562.csv", new ElectionResultsData());
 
             electionStatistics.Location.Should().Be("DSPR");
-            electionStatistics.Id.Should().Be("FINAL_DSPR_1561818562");
+            electionStatistics.Id.Should().StartWith($"{DateTime.MaxValue.Ticks - DateTime.UtcNow.Ticks:D19}".Substring(0, 10));
             electionStatistics.FileTimestamp.Should().Be(1561818562);
             electionStatistics.StatisticsJson.Should().NotBeNullOrEmpty();
             electionStatistics.Type.Should().Be("FINAL");

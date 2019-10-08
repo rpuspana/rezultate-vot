@@ -23,11 +23,7 @@ namespace ElectionResults.Core.Services.CsvProcessing
             await PopulateCandidatesListWithVotes(csvContent);
             electionResultsData.Candidates = Candidates;
             var sumOfVotes = electionResultsData.Candidates.Sum(c => c.Votes);
-            foreach (var candidate in electionResultsData.Candidates)
-            {
-                decimal percentage = Math.Round((decimal)candidate.Votes / sumOfVotes * 100, 2);
-                candidate.Percentage = percentage;
-            }
+            StatisticsAggregator.CalculatePercentagesForCandidates(electionResultsData, sumOfVotes);
 
             return Result.Ok(electionResultsData);
         }

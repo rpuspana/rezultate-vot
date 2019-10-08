@@ -6,5 +6,7 @@ namespace ElectionResults.Core.Storage
     public interface IResultsRepository
     {
         Task InsertResults(ElectionStatistics electionStatistics);
+
+        Task<ElectionStatistics> GetLatestResults(string location, string type);
     }
 }
