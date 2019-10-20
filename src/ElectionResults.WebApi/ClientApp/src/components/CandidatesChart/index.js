@@ -1,53 +1,98 @@
 import React from "react";
 import { ChartBar } from "./ChartBar";
+import CountiesSelect from "./CountiesSelect";
+import { FormGroup, Col, Button } from "reactstrap";
 const dataFromServer = [
   {
     id: "1",
     name: "Candidate X",
     votes: 1209484,
-    url:
-      "https://blog.mycase.com/wp-content/uploads/2015/09/rule-of-thumb-589x505.png",
+    url: "",
     percent: 60
   },
   {
     id: "2",
     name: "Candidate X",
     votes: 1209484,
-    url:
-      "https://blog.mycase.com/wp-content/uploads/2015/09/rule-of-thumb-589x505.png",
+    url: "",
     percent: 25
   },
   {
     id: "3",
     name: "Candidate X",
     votes: 1209484,
-    url:
-      "https://blog.mycase.com/wp-content/uploads/2015/09/rule-of-thumb-589x505.png",
+    url: "",
+    percent: 40
+  },
+  {
+    id: "4",
+    name: "Candidate X",
+    votes: 1209484,
+    url: "",
+    percent: 60
+  },
+  {
+    id: "5",
+    name: "Candidate X",
+    votes: 1209484,
+    url: "",
+    percent: 25
+  },
+  {
+    id: "6",
+    name: "Candidate X",
+    votes: 1209484,
+    url: "",
+    percent: 40
+  },
+  {
+    id: "7",
+    name: "Candidate X",
+    votes: 1209484,
+    url: "",
+    percent: 60
+  },
+  {
+    id: "8",
+    name: "Candidate X",
+    votes: 1209484,
+    url: "",
+    percent: 25
+  },
+  {
+    id: "9",
+    name: "Candidate X",
+    votes: 1209484,
+    url: "",
     percent: 40
   }
 ];
 
-const getBarChart = () => {
-  dataFromServer.map((candidate, index) => (
-    <ChartBar
-      key={candidate.id}
-      percent={candidate.percent}
-      imgUrl={candidate.url}
-      candidateName={candidate.name}
-      votesNumber={candidate.votes}
-    />
-  ));
-};
-
 export const ChartContainer = () => {
-  const [showMore, toggleShowMore] = React.useState(false);
+  const [showAll, toggleShowAll] = React.useState(false);
+
   return (
     <div style={{ width: "700px", height: "500px" }}>
+      <FormGroup row>
+        <Col sm={3}>
+          <CountiesSelect />
+        </Col>
+      </FormGroup>
       {dataFromServer ? (
-        <>
-          {getBarChart()}
-          <button>Show more</button>
-        </>
+        <div>
+          {(showAll ? dataFromServer : dataFromServer.slice(0, 5)).map(
+            candidate => (
+              <ChartBar
+                key={candidate.id}
+                percent={candidate.percent}
+                imgUrl={candidate.url}
+                candidateName={candidate.name}
+                votesNumber={candidate.votes}
+              />
+            )
+          )}
+          {!showAll ? <Button onClick={toggleShowAll}>Show more</Button> : null}
+        </div>
       ) : (
         <div>
           <div>

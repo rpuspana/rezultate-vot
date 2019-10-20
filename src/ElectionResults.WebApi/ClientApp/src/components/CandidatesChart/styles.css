@@ -45,3 +45,15 @@
   font-weight: bold;
   font-family: "Titillium Web", sans-serif;
 }
+.counties-select.dropdown-button {
+  border: 1px solid #cfcfcf;
+  border-radius: 0;
+  background-color: #fff;
+  width: 100%;
+}
+.counties-select.dropdown-button > span {
+  width: 100%;
+}
+.counties-select.dropdown-button > span span {
+  color: #cfcfcf;
+}
