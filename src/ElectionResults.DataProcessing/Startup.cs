@@ -17,10 +17,10 @@ namespace ElectionResults.DataProcessing
         {
             builder.Services.Configure<AppConfig>(options => Configure(builder));
             builder.Services.AddTransient<ICsvDownloaderJob, CsvDownloaderJob>();
-            builder.Services.AddTransient<IBlobUploader, BlobUploader>();
+            builder.Services.AddTransient<IBucketUploader, BucketUploader>();
             builder.Services.AddTransient<IElectionConfigurationSource, ElectionConfigurationSource>();
             builder.Services.AddTransient<IResultsRepository, ResultsRepository>();
-            builder.Services.AddTransient<IBlobProcessor, BlobProcessor>();
+            builder.Services.AddTransient<IFileProcessor, FileProcessor>();
             builder.Services.AddTransient<IStatisticsAggregator, StatisticsAggregator>();
         }
     }

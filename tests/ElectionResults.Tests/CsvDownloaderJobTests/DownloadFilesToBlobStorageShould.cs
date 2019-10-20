@@ -12,7 +12,7 @@ namespace ElectionResults.Tests.CsvDownloaderJobTests
 {
     public class DownloadFilesToBlobStorageShould
     {
-        private IBlobUploader _blobUploader;
+        private IBucketUploader _bucketUploader;
         private IElectionConfigurationSource _electionConfigurationSource;
 
         [Fact]
@@ -34,7 +34,7 @@ namespace ElectionResults.Tests.CsvDownloaderJobTests
 
             await csvDownloaderJob.DownloadFilesToBlobStorage();
 
-            await _blobUploader
+            await _bucketUploader
                 .Received(1)
                 .UploadFromUrl(Arg.Any<ElectionResultsFile>());
         }
@@ -47,7 +47,7 @@ namespace ElectionResults.Tests.CsvDownloaderJobTests
 
             await csvDownloaderJob.DownloadFilesToBlobStorage();
 
-            await _blobUploader
+            await _bucketUploader
                 .Received(2)
                 .UploadFromUrl(Arg.Any<ElectionResultsFile>());
         }
@@ -62,7 +62,7 @@ namespace ElectionResults.Tests.CsvDownloaderJobTests
 
             await csvDownloaderJob.DownloadFilesToBlobStorage();
 
-            await _blobUploader
+            await _bucketUploader
                 .Received(2)
                 .UploadFromUrl(Arg.Is<ElectionResultsFile>(f => f.Name.Contains(timestamp.ToString())));
         }
@@ -77,16 +77,16 @@ namespace ElectionResults.Tests.CsvDownloaderJobTests
 
             await csvDownloaderJob.DownloadFilesToBlobStorage();
 
-            await _blobUploader
+            await _bucketUploader
                 .Received(1)
                 .UploadFromUrl(Arg.Is<ElectionResultsFile>(f => f.Name == $"abc_{timestamp}.csv"));
         }
 
         private CsvDownloaderJob CreatecsvDownloaderJob()
         {
-            _blobUploader = Substitute.For<IBlobUploader>();
+            _bucketUploader = Substitute.For<IBucketUploader>();
             _electionConfigurationSource = Substitute.For<IElectionConfigurationSource>();
-            return new CsvDownloaderJob(_blobUploader, _electionConfigurationSource);
+            return new CsvDownloaderJob(_bucketUploader, _electionConfigurationSource);
         }
 
         private void CreateResultsSourceMock(params ElectionResultsFile[] files)

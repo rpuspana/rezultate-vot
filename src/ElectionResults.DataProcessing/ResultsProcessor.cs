@@ -9,11 +9,11 @@ namespace ElectionResults.DataProcessing
 {
     public class ResultsProcessor
     {
-        private readonly IBlobProcessor _blobProcessor;
+        private readonly IFileProcessor _fileProcessor;
 
-        public ResultsProcessor(IBlobProcessor blobProcessor)
+        public ResultsProcessor(IFileProcessor fileProcessor)
         {
-            _blobProcessor = blobProcessor;
+            _fileProcessor = fileProcessor;
         }
 
         [FunctionName("ResultsProcessor")]
@@ -21,7 +21,7 @@ namespace ElectionResults.DataProcessing
             Stream csvStream, string name, ILogger log, ExecutionContext context)
         {
             FunctionSettings.Initialize(context);
-            await _blobProcessor.ProcessStream(csvStream, name);
+            await _fileProcessor.ProcessStream(csvStream, name);
         }
     }
 }

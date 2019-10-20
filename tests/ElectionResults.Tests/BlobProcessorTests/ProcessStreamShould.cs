@@ -89,9 +89,9 @@ namespace ElectionResults.Tests.BlobProcessorTests
             _electionConfigurationSource.GetListOfCandidates().ReturnsForAnyArgs(candidatesList);
         }
 
-        private TestableBlobProcessor CreateTestableBlobProcessor()
+        private TestableFileProcessor CreateTestableBlobProcessor()
         {
-            return new TestableBlobProcessor(_resultsRepository, _electionConfigurationSource, _statisticsAggregator);
+            return new TestableFileProcessor(_resultsRepository, _electionConfigurationSource, _statisticsAggregator);
         }
 
         private void MapStatisticsAggregatorToSuccessfulResult()

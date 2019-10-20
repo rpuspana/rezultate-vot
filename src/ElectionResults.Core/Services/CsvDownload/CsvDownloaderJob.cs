@@ -7,12 +7,12 @@ namespace ElectionResults.Core.Services.CsvDownload
 {
     public class CsvDownloaderJob: ICsvDownloaderJob
     {
-        private readonly IBlobUploader _blobUploader;
+        private readonly IBucketUploader _bucketUploader;
         private readonly IElectionConfigurationSource _electionConfigurationSource;
 
-        public CsvDownloaderJob(IBlobUploader blobUploader, IElectionConfigurationSource electionConfigurationSource)
+        public CsvDownloaderJob(IBucketUploader bucketUploader, IElectionConfigurationSource electionConfigurationSource)
         {
-            _blobUploader = blobUploader;
+            _bucketUploader = bucketUploader;
             _electionConfigurationSource = electionConfigurationSource;
         }
 
@@ -23,7 +23,7 @@ namespace ElectionResults.Core.Services.CsvDownload
             foreach (var file in files)
             {
                 file.Name = $"{file.Id}_{timestamp}.csv";
-                await _blobUploader.UploadFromUrl(file);
+                await _bucketUploader.UploadFromUrl(file);
             }
         }
     }
