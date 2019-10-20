@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectionResults.DataProcessing", "ElectionResults.DataProcessing\ElectionResults.DataProcessing.csproj", "{0AB24248-AFD4-4CE4-BE36-0A872149B703}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectionResults.Core", "ElectionResults.Core\ElectionResults.Core.csproj", "{F003579E-7070-454C-A8D0-CFEECEED035C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectionResults.Tests", "..\tests\ElectionResults.Tests\ElectionResults.Tests.csproj", "{E2526F35-03E9-4765-9EC8-40FE708F3181}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0AB24248-AFD4-4CE4-BE36-0A872149B703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AB24248-AFD4-4CE4-BE36-0A872149B703}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0AB24248-AFD4-4CE4-BE36-0A872149B703}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0AB24248-AFD4-4CE4-BE36-0A872149B703}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F003579E-7070-454C-A8D0-CFEECEED035C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F003579E-7070-454C-A8D0-CFEECEED035C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F003579E-7070-454C-A8D0-CFEECEED035C}.Release|Any CPU.ActiveCfg = Release|Any CPU
