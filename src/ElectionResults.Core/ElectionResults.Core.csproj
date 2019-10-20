@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="3.1.0" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.101.75" />
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.100.1" />
     <PackageReference Include="AWSSDK.S3" Version="3.3.104.40" />
     <PackageReference Include="CoreHelpers.WindowsAzure.Storage.Table" Version="2.5.93" />
