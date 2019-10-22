@@ -44,48 +44,24 @@ TBD
 
 #### Requirements
 
-##### For Visual Studio
-- Install the [Azure Functions workload](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs)
-  - It also includes the Azure Storage Emulator
-- Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
-- Select ElectionResults.DataProcessing as startup project and run it
+##### Run the project
 
-##### For Visual Studio Code
-- Install the [Azure Functions CLI](https://github.com/Azure/azure-functions-core-tools)
-- Install [Azure Storage Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409) (for Linux use [Azurite](https://github.com/azure/azurite))
-- Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) 
-- `cd src\ElectionResults.DataProcessing`
-- `func start`
+- `cd src\ElectionResults.WebApi`
+- `dotnet run`
 
-By default, the functions are configured to use local storage, this can be changed in local.settings.json by modifying the AzureWebJobsStorage key with a valid Azure Storage Key.
-To see the blob container where the CSV files are downloaded, open **Azure Storage Explorer** then navigate to **Local & Attached** -> **Storage Accounts** -> **Emulator** -> **Blob Containers**
-
-To see the table where the processed results are stored open **Azure Storage Explorer** then navigate to **Local & Attached** -> **Storage Accounts** -> **Emulator** -> **Tables**
 
 #### Configuration
-Most of the settings are stored in local.settings.json and the file is not ignored because it doesn't contain sensitive data.
+
+The settings are stored in appsettings.json.
 In this file you'll find the following settings:
-- **AzureWebJobsStorage**: "UseDevelopmentStorage=true"
-  - uses the local storage emulator
-- **ScheduleTriggerTime**: "0 */5 * * * *"
-  - runs the CSV downloader function every 5 minutes
-- **BlobContainerName**: "election-results"
-  - the name of the blob container where CSV files are downloaded
-- **AzureTableName**: "ElectionStatistics"
-  - the name of the Azure Table where the JSON statistics are stored
+
+- **jobTimer**: "*/5 * * * *"
+  - runs the CSV downloader job every 5 minutes
+- **bucketName**: "code4-presidential-2019"
+  - the name of the bucket where CSV files are downloaded
+- **tableName**: "electionresults"
+  - the name of the DynamoDB Table where the JSON statistics are stored
   
-If you want to use your own Azure Storage account for development, you should follow the following steps:
-- Create a file named ["secrets.settings.json"](https://www.tomfaltesek.com/azure-functions-local-settings-json-and-source-control/) in the folder ElectionResults.DataProcessing
-- This file is ignored so you can include credentials in it. If you open FunctionSettings.cs you will see that this file overrides local.settings.json and the environment variables
-- Add a "AzureWebJobsStorage" key and set the connection string as the value
-Example:
-
-`
-{
-  "AzureWebJobsStorage": "<your connection string>"
-}
-`
-
 #### Run unit tests
 - `cd tests\ElectionResults.Tests`
 - `dotnet test`

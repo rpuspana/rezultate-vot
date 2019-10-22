@@ -12,12 +12,12 @@ namespace ElectionResults.Core.Storage
     public class ResultsRepository : IResultsRepository
     {
         private readonly IAmazonDynamoDB _dynamoDb;
-        private string _tableName;
+        private AppConfig _config;
 
         public ResultsRepository(IOptions<AppConfig> config, IAmazonDynamoDB dynamoDb)
         {
             _dynamoDb = dynamoDb;
-            _tableName = config.Value.TableName;
+            _config = config.Value;
         }
 
         public async Task InsertResults(ElectionStatistics electionStatistics)
@@ -40,7 +40,7 @@ namespace ElectionResults.Core.Storage
                     PutRequest = new PutRequest { Item = item }
                 });
                 Dictionary<string, List<WriteRequest>> requestItems = new Dictionary<string, List<WriteRequest>>();
-                requestItems[_tableName] = items;
+                requestItems[_config.TableName] = items;
 
                 await _dynamoDb.BatchWriteItemAsync(requestItems);
             }
@@ -56,7 +56,7 @@ namespace ElectionResults.Core.Storage
             {
                 var res = await _dynamoDb.DescribeTableAsync(new DescribeTableRequest
                 {
-                    TableName = _tableName
+                    TableName = _config.TableName
                 });
                 return res.Table.TableStatus == "ACTIVE";
             }
@@ -69,7 +69,7 @@ namespace ElectionResults.Core.Storage
 
         public async Task<ElectionStatistics> GetLatestResults(string location, string type)
         {
-            var scanRequest = new ScanRequest(_tableName);
+            var scanRequest = new ScanRequest(_config.TableName);
             scanRequest.ExpressionAttributeValues = new Dictionary<string, AttributeValue>
             {
                 {":csvType", new AttributeValue(type)},
@@ -134,11 +134,11 @@ namespace ElectionResults.Core.Storage
                         ReadCapacityUnits = 5,
                         WriteCapacityUnits = 5
                     },
-                    TableName = _tableName
+                    TableName = _config.TableName
                 };
 
                 var response = await _dynamoDb.CreateTableAsync(request);
-                await WaitUntilTableReady(_tableName);
+                await WaitUntilTableReady(_config.TableName);
             }
             catch (Exception e)
             {

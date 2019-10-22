@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ElectionResults.Core.Models;
 using ElectionResults.Core.Repositories;
+using ElectionResults.Core.Storage;
+using Microsoft.Extensions.Options;
 
 namespace ElectionResults.Core.Services.BlobContainer
 {
@@ -14,13 +16,15 @@ namespace ElectionResults.Core.Services.BlobContainer
         private readonly IFileRepository _fileRepository;
         private readonly IFileProcessor _fileProcessor;
         private static HttpClient _httpClient;
+        private AppConfig _config;
 
-        public BucketUploader(IBucketRepository bucketRepository, IFileRepository fileRepository, IFileProcessor fileProcessor)
+        public BucketUploader(IBucketRepository bucketRepository, IOptions<AppConfig> config, IFileRepository fileRepository, IFileProcessor fileProcessor)
         {
             _bucketRepository = bucketRepository;
             _fileRepository = fileRepository;
             _fileProcessor = fileProcessor;
             _httpClient = new HttpClient();
+            _config = config.Value;
         }
 
         public async Task UploadFromUrl(ElectionResultsFile file)
@@ -37,7 +41,7 @@ namespace ElectionResults.Core.Services.BlobContainer
 
         private async Task UploadFileToStorage(Stream fileStream, string fileName)
         {
-            var bucketName = "code4-presidential-2019";
+            var bucketName = _config.BucketName;
             var bucketExists = await _bucketRepository.DoesS3BucketExist(bucketName);
             if (bucketExists == false)
             {

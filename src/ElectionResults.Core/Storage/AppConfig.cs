@@ -3,5 +3,6 @@
     public class AppConfig
     {
         public string TableName { get; set; }
+        public string BucketName { get; set; }
     }
 }
