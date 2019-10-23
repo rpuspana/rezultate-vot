@@ -3,7 +3,7 @@ using ElectionResults.Core.Models;
 
 namespace ElectionResults.Core.Services.BlobContainer
 {
-    public interface IBlobUploader
+    public interface IBucketUploader
     {
         Task UploadFromUrl(ElectionResultsFile file);
     }

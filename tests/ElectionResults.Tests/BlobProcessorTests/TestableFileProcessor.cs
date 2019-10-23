@@ -7,9 +7,9 @@ using ElectionResults.Core.Storage;
 
 namespace ElectionResults.Tests.BlobProcessorTests
 {
-    public class TestableBlobProcessor: BlobProcessor
+    public class TestableFileProcessor: FileProcessor
     {
-        public TestableBlobProcessor(IResultsRepository resultsRepository, IElectionConfigurationSource electionConfigurationSource, IStatisticsAggregator statisticsAggregator) : base(resultsRepository, electionConfigurationSource, statisticsAggregator)
+        public TestableFileProcessor(IResultsRepository resultsRepository, IElectionConfigurationSource electionConfigurationSource, IStatisticsAggregator statisticsAggregator) : base(resultsRepository, electionConfigurationSource, statisticsAggregator)
         {
         }
 

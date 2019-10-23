@@ -2,6 +2,7 @@
 {
     public class AppConfig
     {
-        public string AzureWebJobsStorage { get; set; }
+        public string TableName { get; set; }
+        public string BucketName { get; set; }
     }
 }

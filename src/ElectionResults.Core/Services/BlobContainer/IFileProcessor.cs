@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ElectionResults.Core.Services.BlobContainer
 {
-    public interface IBlobProcessor
+    public interface IFileProcessor
     {
         Task ProcessStream(Stream stream, string fileName);
     }

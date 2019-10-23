@@ -8,13 +8,13 @@ using ElectionResults.Core.Storage;
 
 namespace ElectionResults.Core.Services.BlobContainer
 {
-    public class BlobProcessor : IBlobProcessor
+    public class FileProcessor : IFileProcessor
     {
         private readonly IResultsRepository _resultsRepository;
         private readonly IElectionConfigurationSource _electionConfigurationSource;
         private readonly IStatisticsAggregator _statisticsAggregator;
 
-        public BlobProcessor(IResultsRepository resultsRepository,
+        public FileProcessor(IResultsRepository resultsRepository,
             IElectionConfigurationSource electionConfigurationSource,
             IStatisticsAggregator statisticsAggregator)
         {

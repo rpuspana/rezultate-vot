@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CoreHelpers.WindowsAzure.Storage.Table" Version="2.5.93" />
-    <PackageReference Include="CSharpFunctionalExtensions" Version="1.18.2" />
+    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="3.1.0" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.101.78" />
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.100.1" />
+    <PackageReference Include="AWSSDK.S3" Version="3.3.104.40" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.1.1" />
     <PackageReference Include="CsvHelper" Version="12.1.2" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.6" />
   </ItemGroup>
 
 </Project>
