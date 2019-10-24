@@ -72,7 +72,22 @@ export const ChartContainer = () => {
   const [showAll, toggleShowAll] = React.useState(false);
 
   return (
-    <div style={{ width: "700px", height: "500px" }}>
+    <div>
+      <div sm={12} className={"votes-container"}>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra
+          nam libero justo laoreet sit amet cursus sit. Malesuada nunc vel risus
+          commodo viverra maecenas.
+        </p>
+        <div sm={3} className={"votes-numbers"}>
+          <h3 className={"votes-title"}>Voturi numarate</h3>
+          <div sm={3} className={"votes-results"}>
+            <p className={"votes-percent"}>30%</p>
+            <p className={"votes-text"}>12.400.000</p>
+          </div>
+        </div>
+      </div>
       <FormGroup row>
         <Col sm={3}>
           <CountiesSelect />
@@ -91,7 +106,13 @@ export const ChartContainer = () => {
               />
             )
           )}
-          {!showAll ? <Button onClick={toggleShowAll}>Show more</Button> : null}
+          {!showAll ? (
+            <div className={"show-all-container"} sm={3}>
+              <Button className={"show-all-btn"} onClick={toggleShowAll}>
+                Afiseaza toti candidatii
+              </Button>
+            </div>
+          ) : null}
         </div>
       ) : (
         <div>
