@@ -1,7 +1,9 @@
 using System.Threading.Tasks;
 using ElectionResults.Core.Models;
 using ElectionResults.Core.Services;
+using ElectionResults.WebApi.Hubs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace ElectionResults.WebApi.Controllers
 {

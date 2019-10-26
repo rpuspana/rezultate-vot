@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,10 @@ namespace ElectionResults.Core.Services.BlobContainer
             var aggregationResult = await _statisticsAggregator.RetrieveElectionData(csvContent);
             if (aggregationResult.IsSuccess)
             {
-                var electionStatistics = FileNameParser.BuildElectionStatistics(fileName, aggregationResult.Value);
+
+                var electionStatistics =
+                    FileNameParser.BuildElectionStatistics(fileName, aggregationResult.Value);
+                Console.WriteLine($"Uploading file {fileName} with timestamp {electionStatistics.FileTimestamp}");
                 await _resultsRepository.InsertResults(electionStatistics);
             }
         }

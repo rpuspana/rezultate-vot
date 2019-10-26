@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using ElectionResults.WebApi.Hubs;
 
 namespace ElectionResults.WebApi
 {
@@ -64,6 +65,7 @@ namespace ElectionResults.WebApi
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,7 +84,10 @@ namespace ElectionResults.WebApi
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ElectionResultsHub>("/live-results");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

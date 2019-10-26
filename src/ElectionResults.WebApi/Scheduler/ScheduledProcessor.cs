@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
+using ElectionResults.Core.Storage;
 using ElectionResults.WebApi.BackgroundService;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using NCrontab;
 
 namespace ElectionResults.WebApi.Scheduler
@@ -11,11 +14,12 @@ namespace ElectionResults.WebApi.Scheduler
     {
         private readonly CrontabSchedule _schedule;
         private DateTime _nextRun;
-        protected abstract string Schedule { get; }
-        public ScheduledProcessor(IServiceScopeFactory serviceScopeFactory) : base(serviceScopeFactory)
+
+        public ScheduledProcessor(IServiceScopeFactory serviceScopeFactory, IOptions<AppConfig> config) : base(serviceScopeFactory)
         {
-            _schedule = CrontabSchedule.Parse(Schedule);
+            _schedule = CrontabSchedule.Parse(config.Value.JobTimer);
             _nextRun = _schedule.GetNextOccurrence(DateTime.Now);
+            Console.WriteLine($"Next run will be at {_nextRun:F}");
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
