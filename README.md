@@ -32,9 +32,8 @@ NuGet
 
 ### Database technology & provider
 
-Azure Blob Storage
-
-Azure Table Storage
+* Amazon S3 Storage
+* Amazon DynamoDB
 
 ## Repos and projects
 
@@ -43,6 +42,14 @@ TBD
 ## Deployment
 
 #### Requirements
+
+##### Prerequisites
+* install and configure AWS (if it's not already done)
+  * `aws configure`
+  * in order to configure AWS, you need to create an AWS account
+* Install node dependencies for `ClientApp` by following instructions from  `src\ElectionResults.WebApi\ClientAp\README.md` 
+* Update configurations `src\ElectionResults.WebApi\appsettings.json` as necessary for your local environment
+  * update `bucketName` as it has to be a unique id in Amazon, e.g. `code4-presidential-2019-your-name`
 
 ##### Run the project
 
