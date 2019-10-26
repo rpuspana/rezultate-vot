@@ -17,7 +17,12 @@ namespace ElectionResults.WebApi.Scheduler
         private readonly IHubContext<ElectionResultsHub> _hubContext;
         private readonly IResultsAggregator _resultsAggregator;
 
-        public ScheduleTask(IServiceScopeFactory serviceScopeFactory, ICsvDownloaderJob csvDownloaderJob, IHubContext<ElectionResultsHub> hubContext, IResultsAggregator resultsAggregator, IOptions<AppConfig> config) : base(serviceScopeFactory, config)
+        public ScheduleTask(IServiceScopeFactory serviceScopeFactory,
+            ICsvDownloaderJob csvDownloaderJob,
+            IHubContext<ElectionResultsHub> hubContext,
+            IResultsAggregator resultsAggregator,
+            IOptions<AppConfig> config)
+            : base(serviceScopeFactory, config)
         {
             _csvDownloaderJob = csvDownloaderJob;
             _hubContext = hubContext;

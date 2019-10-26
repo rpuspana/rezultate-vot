@@ -111,17 +111,17 @@ namespace ElectionResults.Core.Storage
                         new AttributeDefinition
                         {
                             AttributeName = "id",
-                            AttributeType = "S"
+                            AttributeType = ScalarAttributeType.S
                         },
                         new AttributeDefinition
                         {
                             AttributeName = "csvType",
-                            AttributeType = "S"
+                            AttributeType = ScalarAttributeType.S
                         },
                         new AttributeDefinition
                         {
                             AttributeName = "csvLocation",
-                            AttributeType = "S"
+                            AttributeType = ScalarAttributeType.S
                         }
                     },
                     KeySchema = new List<KeySchemaElement>
