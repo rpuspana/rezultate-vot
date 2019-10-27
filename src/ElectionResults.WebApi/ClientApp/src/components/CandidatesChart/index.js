@@ -74,28 +74,28 @@ export const ChartContainer = () => {
 
   return (
     <div>
-      <div sm={12} className={"votes-container"}>
-        <p className={"votes-container-text"}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra
-          nam libero justo laoreet sit amet cursus sit. Malesuada nunc vel risus
-          commodo viverra maecenas.
-        </p>
-        <div sm={3} className={"votes-numbers"}>
-          <h3 className={"votes-title"}>Voturi numarate</h3>
-          <div sm={3} className={"votes-results"}>
-            <p className={"votes-percent"}>30%</p>
-            <p className={"votes-text"}>12.400.000</p>
-          </div>
-        </div>
-      </div>
-      <FormGroup row>
-        <Col sm={3}>
-          <CountiesSelect />
-        </Col>
-      </FormGroup>
       {dataFromServer ? (
         <div>
+          <div sm={12} className={"votes-container"}>
+            <p className={"container-text"}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Viverra nam libero justo laoreet sit amet cursus sit. Malesuada
+              nunc vel risus commodo viverra maecenas.
+            </p>
+            <div sm={3} className={"votes-numbers"}>
+              <h3 className={"votes-title"}>Voturi numarate</h3>
+              <div sm={3} className={"votes-results"}>
+                <p className={"votes-percent"}>30%</p>
+                <p className={"votes-text"}>12.400.000</p>
+              </div>
+            </div>
+          </div>
+          <FormGroup row>
+            <Col sm={3}>
+              <CountiesSelect />
+            </Col>
+          </FormGroup>
           {(showAll ? dataFromServer : dataFromServer.slice(0, 5)).map(
             candidate => (
               <ChartBar
@@ -116,16 +116,20 @@ export const ChartContainer = () => {
           ) : null}
         </div>
       ) : (
-        <div>
-          <div>
-            <p>
+        <div className={"default-container"}>
+          <div className={"votes-container"}>
+            <p className={"container-text"}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
               Viverra nam libero justo laoreet sit amet cursus sit. Malesuada
               nunc vel risus commodo viverra maecenas.
             </p>
           </div>
-          <div>Cine sunt candidatii care merg in turul 2?</div>
+          <div className={"question"}>
+            <p className={"question-text"}>
+              Cine sunt candidatii care merg in turul 2?
+            </p>
+          </div>
         </div>
       )}
     </div>

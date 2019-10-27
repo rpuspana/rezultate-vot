@@ -8,9 +8,7 @@ export const ChartBar = ({ percent, imgUrl, candidateName, votesNumber }) => {
         <img src={imgUrl} />
       </div>
       <div className={"bar-candidate"}>
-        <p style={{ fontSize: "1.75em", marginLeft: "0.25em" }}>
-          {candidateName}
-        </p>
+        <p className={"bar-candidate-name"}>{candidateName}</p>
       </div>
       <div className={"bar-results"}>
         <div
@@ -20,8 +18,8 @@ export const ChartBar = ({ percent, imgUrl, candidateName, votesNumber }) => {
           }}
         >
           <div className={"bar-votes-text"}>
-            <p style={{ fontSize: "2em" }}>{`${percent}%`}</p>
-            <p style={{ fontSize: "1.5em" }}>{votesNumber}</p>
+            <p className={"bar-votes-percent"}>{`${percent}%`}</p>
+            <p className={"bar-votes-number"}>{votesNumber}</p>
           </div>
         </div>
       </div>
