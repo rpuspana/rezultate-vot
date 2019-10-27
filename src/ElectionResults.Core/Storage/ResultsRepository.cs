@@ -69,22 +69,25 @@ namespace ElectionResults.Core.Storage
 
         public async Task<ElectionStatistics> GetLatestResults(string location, string type)
         {
-            var scanRequest = new ScanRequest(_config.TableName);
-            scanRequest.ExpressionAttributeValues = new Dictionary<string, AttributeValue>
+            var queryRequest = new QueryRequest(_config.TableName);
+            queryRequest.ExpressionAttributeValues = new Dictionary<string, AttributeValue>
             {
                 {":csvType", new AttributeValue(type)},
                 {":csvLocation", new AttributeValue(location) }
             };
-            scanRequest.FilterExpression = "csvType = :csvType and csvLocation = :csvLocation";
-            var scanResponse = await _dynamoDb.ScanAsync(scanRequest);
-            var results = GetResults(scanResponse);
+            queryRequest.IndexName = "latest-result";
+            queryRequest.KeyConditionExpression = "csvType = :csvType and csvLocation = :csvLocation";
+            var queryResponse = await _dynamoDb.QueryAsync(queryRequest);
+
+            var results = GetResults(queryResponse.Items);
             var latest = results.OrderByDescending(r => r.FileTimestamp).FirstOrDefault();
+            Console.WriteLine($"Latest for {type} and {location} is {latest.FileTimestamp}");
             return latest;
         }
 
-        private List<ElectionStatistics> GetResults(ScanResponse scanResponse)
+        private List<ElectionStatistics> GetResults(List<Dictionary<string, AttributeValue>> foundItems)
         {
-            return scanResponse.Items.Select(item => new ElectionStatistics
+            return foundItems.Select(item => new ElectionStatistics
             {
                 Id = item["id"].S,
                 FileTimestamp = Convert.ToInt64(item["csvTimestamp"].N),
@@ -107,25 +110,30 @@ namespace ElectionResults.Core.Storage
                     {
                         new AttributeDefinition
                         {
-                            AttributeName = "csvType",
-                            AttributeType = "S"
+                            AttributeName = "id",
+                            AttributeType = ScalarAttributeType.S
                         },
                         new AttributeDefinition
                         {
-                            AttributeName = "id",
-                            AttributeType = "S"
+                            AttributeName = "csvType",
+                            AttributeType = ScalarAttributeType.S
+                        },
+                        new AttributeDefinition
+                        {
+                            AttributeName = "csvLocation",
+                            AttributeType = ScalarAttributeType.S
                         }
                     },
                     KeySchema = new List<KeySchemaElement>
                     {
                         new KeySchemaElement
                         {
-                            AttributeName = "csvType",
+                            AttributeName = "id",
                             KeyType = KeyType.HASH
                         },
                         new KeySchemaElement
                         {
-                            AttributeName = "id",
+                            AttributeName = "csvType",
                             KeyType = KeyType.RANGE
                         }
                     },
@@ -134,7 +142,21 @@ namespace ElectionResults.Core.Storage
                         ReadCapacityUnits = 5,
                         WriteCapacityUnits = 5
                     },
-                    TableName = _config.TableName
+                    TableName = _config.TableName,
+                    GlobalSecondaryIndexes = new List<GlobalSecondaryIndex>
+                    {
+                        new GlobalSecondaryIndex
+                        {
+                            IndexName = "latest-result",
+                            KeySchema = new List<KeySchemaElement>
+                            {
+                                new KeySchemaElement("csvLocation", KeyType.HASH),
+                                new KeySchemaElement("csvType", KeyType.RANGE)
+                            },
+                            Projection = new Projection{ProjectionType = ProjectionType.ALL},
+                            ProvisionedThroughput = new ProvisionedThroughput(5, 5)
+                        }
+                    }
                 };
 
                 var response = await _dynamoDb.CreateTableAsync(request);

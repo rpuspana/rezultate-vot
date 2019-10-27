@@ -4,5 +4,6 @@
     {
         public string TableName { get; set; }
         public string BucketName { get; set; }
+        public string JobTimer { get; set; }
     }
 }

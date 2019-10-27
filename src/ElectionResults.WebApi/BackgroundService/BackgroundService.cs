@@ -12,23 +12,18 @@ namespace ElectionResults.WebApi.BackgroundService
 
         public virtual Task StartAsync(CancellationToken cancellationToken)
         {
-            // Store the task we're executing
             _executingTask = ExecuteAsync(_stoppingCts.Token);
 
-            // If the task is completed then return it,
-            // this will bubble cancellation and failure to the caller
             if (_executingTask.IsCompleted)
             {
                 return _executingTask;
             }
 
-            // Otherwise it's running
             return Task.CompletedTask;
         }
 
         public virtual async Task StopAsync(CancellationToken cancellationToken)
         {
-            // Stop called without start
             if (_executingTask == null)
             {
                 return;
@@ -36,12 +31,10 @@ namespace ElectionResults.WebApi.BackgroundService
 
             try
             {
-                // Signal cancellation to the executing method
                 _stoppingCts.Cancel();
             }
             finally
             {
-                // Wait until the task completes or the stop token triggers
                 await Task.WhenAny(_executingTask, Task.Delay(Timeout.Infinite,
                     cancellationToken));
             }
@@ -49,9 +42,6 @@ namespace ElectionResults.WebApi.BackgroundService
 
         protected virtual async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            //stoppingToken.Register(() =>
-            //        _logger.LogDebug($" GracePeriod background task is stopping."));
-
             do
             {
                 await Process();

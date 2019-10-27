@@ -17,6 +17,7 @@ namespace ElectionResults.Core.Services
         {
             _resultsRepository = resultsRepository;
         }
+
         public async Task<ElectionResultsData> GetResults(ResultsType type)
         {
             string resultsType = ConvertEnumToString(type);
