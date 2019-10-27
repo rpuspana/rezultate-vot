@@ -3,11 +3,21 @@ import { Component } from "react";
 import { jsx } from "@emotion/core";
 import Button from "@atlaskit/button";
 
-import Select from "react-select";
+import Select, { components } from "react-select";
 import { defaultTheme } from "react-select";
 
 const selectOptions = [
   { value: "NA", label: "National" },
+  { value: "AL", label: "Alabama" },
+  { value: "AK", label: "Alaska" },
+  { value: "AS", label: "American Samoa" },
+  { value: "AZ", label: "Arizona" },
+  { value: "AR", label: "Arkansas" },
+  { value: "AL", label: "Alabama" },
+  { value: "AK", label: "Alaska" },
+  { value: "AS", label: "American Samoa" },
+  { value: "AZ", label: "Arizona" },
+  { value: "AR", label: "Arkansas" },
   { value: "AL", label: "Alabama" },
   { value: "AK", label: "Alaska" },
   { value: "AS", label: "American Samoa" },
@@ -18,6 +28,10 @@ const selectOptions = [
 const { colors } = defaultTheme;
 
 const selectStyles = {
+  container: provided => ({
+    ...provided,
+    height: 50
+  }),
   control: (provided, state) => ({
     ...provided,
     minWidth: 240,
@@ -25,18 +39,31 @@ const selectStyles = {
     backgroundColor: "#cfcfcf",
     borderRadius: 0,
     border: "1px solid #DEDEDE",
+
     boxShadow: state.isFocused ? "none" : "none",
     "&:hover": {
       border: state.isFocused ? 0 : 0,
       boxShadow: state.isFocused ? "none" : "none"
-    }
+    },
+    margin: "8px 20px"
   }),
-  menu: () => ({ boxShadow: "inset 0 1px 0 rgba(0, 0, 0, 0.1)" }),
+  menu: () => ({
+    boxShadow: "1px 1px 8px  rgba(0, 0, 0, 0.1)",
+    width: "286px",
+    backgroundColor: "#fff"
+  }),
   option: (provided, state) => ({
     ...provided,
     color: state.isSelected ? "orange" : "grey",
     backgroundColor: state.isSelected ? "#fff" : "#fff",
-    color: state.isFocused ? "orange" : "grey"
+    color: state.isFocused ? "orange" : "grey",
+    fontSize: 16,
+    fontWeight: "normal",
+    paddingLeft: 20
+  }),
+  menuList: provided => ({
+    ...provided,
+    padding: "8px 16px"
   })
 };
 
@@ -62,14 +89,16 @@ export default class CountiesSelect extends Component {
             onClick={this.toggleOpen}
             isSelected={isOpen}
           >
-            {value ? `Judet: ${value.label}` : "National"}
+            {value && value !== selectOptions[0]
+              ? `Judet: ${value.label}`
+              : "National"}
           </Button>
         }
       >
         <Select
           autoFocus
           backspaceRemovesValue={false}
-          components={{ DropdownIndicator, IndicatorSeparator: null }}
+          components={{ DropdownIndicator, MenuList, Option }}
           controlShouldRenderValue={false}
           hideSelectedOptions={false}
           isClearable={false}
@@ -98,7 +127,9 @@ const Menu = props => {
         boxShadow: `0 0 0 1px ${shadow}, 0 4px 11px ${shadow}`,
         marginTop: 8,
         position: "absolute",
-        zIndex: 2
+        zIndex: 2,
+        width: "286px",
+        boxShadow: "1px 1px 8px rgba(0, 0, 0, 0.1)"
       }}
       {...props}
     />
@@ -134,12 +165,41 @@ const Svg = p => (
     {...p}
   />
 );
+const Option = props => {
+  console.log("option", props);
+  if (props.data.label === "National") {
+    return (
+      <div className={"first-option"}>
+        <components.Option {...props}>{props.children}</components.Option>
+      </div>
+    );
+  } else {
+    return (
+      <components.Option className={"menu-option"} {...props}>
+        {props.children}
+      </components.Option>
+    );
+  }
+};
+
+const MenuList = props => {
+  console.log(props);
+  const firstOption = props.children[0];
+  props.children.shift();
+  return (
+    <components.MenuList {...props}>
+      {firstOption}
+      <div className={"county-text"}>Judet</div>
+      {props.children}
+    </components.MenuList>
+  );
+};
 const DropdownIndicator = () => (
   <div css={{ color: colors.neutral20, height: 24, width: 32 }}>
     <Svg>
       <path
         d="M16.436 15.085l3.94 4.01a1 1 0 0 1-1.425 1.402l-3.938-4.006a7.5 7.5 0 1 1 1.423-1.406zM10.5 16a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z"
-        fill="currentColor"
+        fill="#4F4F4F"
         fillRule="evenodd"
       />
     </Svg>

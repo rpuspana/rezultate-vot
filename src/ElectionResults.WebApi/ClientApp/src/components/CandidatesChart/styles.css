@@ -6,12 +6,16 @@
 .votes-container {
   padding: 30px 0;
 }
+.votes-container-text {
+  font-size: 1.25em;
+}
 .votes-container > p {
   margin-bottom: 30px;
 }
 .votes-title {
-  font-size: 36px;
+  font-size: 2.25em;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 .votes-numbers {
   display: flex;
@@ -21,6 +25,7 @@
 .votes-results {
   height: 100px;
   width: 20%;
+  min-width: 200px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -31,21 +36,21 @@
 }
 
 .votes-percent {
-  font-size: 36px;
+  font-size: 2em;
   padding-bottom: 5px;
 }
 .votes-text {
-  font-size: 18px;
+  font-size: 1.5em;
 }
 .bar-container {
   width: 100%;
   height: 80px;
   background-color: #dbdbdb;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
   display: flex;
 }
 .bar-icon {
-  width: 10%;
+  width: 80px;
   height: 80px;
 }
 .bar-icon img {
@@ -89,12 +94,14 @@
   border-radius: 0;
   background-color: #fff;
   width: 100%;
+  height: 50px;
 }
 .counties-select.dropdown-button > span {
   width: 100%;
 }
 .counties-select.dropdown-button > span span {
   color: #cfcfcf;
+  /* font-size: 22px; */
 }
 .show-all-container {
   display: flex;
@@ -104,4 +111,22 @@
   background-color: #110d64;
   color: #fff;
   border-radius: 10px;
+  font-weight: bold;
+  height: 42px;
+  margin-bottom: 30px;
+}
+
+/* select styles */
+
+.first-option > div {
+  padding-left: 12px;
+  color: #ea8c42;
+  height: 32px;
+  border-bottom: 1px solid #cfcfcf;
+  margin-bottom: 5px;
+}
+.county-text {
+  font-weight: bold;
+  color: #000;
+  padding-left: 12px;
 }

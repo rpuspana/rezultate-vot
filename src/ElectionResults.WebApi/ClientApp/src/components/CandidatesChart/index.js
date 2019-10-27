@@ -7,7 +7,8 @@ const dataFromServer = [
     id: "1",
     name: "Candidate X",
     votes: 1209484,
-    url: "",
+    url:
+      "https://us.123rf.com/450wm/kritchanut/kritchanut1406/kritchanut140600112/29213222-stock-vector-male-silhouette-avatar-profile-picture.jpg?ver=6&fbclid=IwAR0HzpXjYDnMwHFfD8fdnNFrBa8rmLJ74i3NbOsPZvzwNNY7WANjuX6DvGA",
     percent: 60
   },
   {
@@ -74,7 +75,7 @@ export const ChartContainer = () => {
   return (
     <div>
       <div sm={12} className={"votes-container"}>
-        <p>
+        <p className={"votes-container-text"}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra
           nam libero justo laoreet sit amet cursus sit. Malesuada nunc vel risus
