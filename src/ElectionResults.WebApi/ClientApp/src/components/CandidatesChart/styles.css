@@ -72,17 +72,24 @@
 }
 
 .bar-candidate {
-  background-color: #ea8c42;
+  background-color: #fff;
   width: 20%;
   display: flex;
   align-items: center;
-  color: #fff;
+  justify-content: center;
+  color: #110d64;
   font-weight: bold;
   font-family: "Titillium Web", sans-serif;
 }
 .bar-candidate-name {
   font-size: 1.75em;
   margin-left: 0.25em;
+}
+.bar-votes-result {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .bar-results {
@@ -100,7 +107,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-right: 5%;
+  margin-right: -50px;
   justify-content: center;
   color: #fff;
   font-weight: bold;
@@ -109,6 +116,8 @@
 
 .bar-votes-percent {
   font-size: 2em;
+  background-color: #110d64;
+  padding: 5px;
 }
 .bar-votes-number {
   font-size: 1.5em;

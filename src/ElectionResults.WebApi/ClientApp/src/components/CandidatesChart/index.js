@@ -2,79 +2,89 @@ import React from "react";
 import { ChartBar } from "./ChartBar";
 import CountiesSelect from "./CountiesSelect";
 import { FormGroup, Col, Button } from "reactstrap";
-const dataFromServer = [
+
+const candidates = [
   {
     id: "1",
     name: "Candidate X",
     votes: 1209484,
-    url:
+    imageUrl:
       "https://us.123rf.com/450wm/kritchanut/kritchanut1406/kritchanut140600112/29213222-stock-vector-male-silhouette-avatar-profile-picture.jpg?ver=6&fbclid=IwAR0HzpXjYDnMwHFfD8fdnNFrBa8rmLJ74i3NbOsPZvzwNNY7WANjuX6DvGA",
-    percent: 60
+    percentage: 60
   },
   {
     id: "2",
     name: "Candidate X",
     votes: 1209484,
-    url: "",
-    percent: 25
+    imageUrl: "",
+    percentage: 25
   },
   {
     id: "3",
     name: "Candidate X",
     votes: 1209484,
-    url: "",
-    percent: 40
+    imageUrl: "",
+    percentage: 40
   },
   {
     id: "4",
     name: "Candidate X",
     votes: 1209484,
-    url: "",
-    percent: 60
+    imageUrl: "",
+    percentage: 60
   },
   {
     id: "5",
     name: "Candidate X",
     votes: 1209484,
-    url: "",
-    percent: 25
+    imageUrl: "",
+    percentage: 25
   },
   {
     id: "6",
     name: "Candidate X",
     votes: 1209484,
-    url: "",
-    percent: 40
+    imageUrl: "",
+    percentage: 40
   },
   {
     id: "7",
     name: "Candidate X",
     votes: 1209484,
-    url: "",
-    percent: 60
+    imageUrl: "",
+    percentage: 60
   },
   {
     id: "8",
     name: "Candidate X",
     votes: 1209484,
-    url: "",
-    percent: 25
+    imageUrl: "",
+    percentage: 25
   },
   {
     id: "9",
     name: "Candidate X",
     votes: 1209484,
-    url: "",
-    percent: 40
+    imageUrl: "",
+    percentage: 40
   }
 ];
 
 export const ChartContainer = () => {
   const [showAll, toggleShowAll] = React.useState(false);
-
+  // const [candidates, setCandidates] = React.useState(null);
+  React.useEffect(() => {
+    // fetch(
+    //   "insert url here"
+    // )
+    //   .then(data => data.json())
+    //   .then(data => {
+    //     setCandidates(data.candidates);
+    //   });
+  });
   return (
     <div>
-      {dataFromServer ? (
+      {candidates ? (
         <div>
           <div sm={12} className={"votes-container"}>
             <p className={"container-text"}>
@@ -96,17 +106,15 @@ export const ChartContainer = () => {
               <CountiesSelect />
             </Col>
           </FormGroup>
-          {(showAll ? dataFromServer : dataFromServer.slice(0, 5)).map(
-            candidate => (
-              <ChartBar
-                key={candidate.id}
-                percent={candidate.percent}
-                imgUrl={candidate.url}
-                candidateName={candidate.name}
-                votesNumber={candidate.votes}
-              />
-            )
-          )}
+          {(showAll ? candidates : candidates.slice(0, 5)).map(candidate => (
+            <ChartBar
+              key={candidate.id}
+              percent={candidate.percentage}
+              imgUrl={candidate.imageUrl}
+              candidateName={candidate.name}
+              votesNumber={candidate.votes}
+            />
+          ))}
           {!showAll ? (
             <div className={"show-all-container"} sm={3}>
               <Button className={"show-all-btn"} onClick={toggleShowAll}>
