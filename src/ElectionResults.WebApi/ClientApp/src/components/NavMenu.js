@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import logo from '../images/logo.svg';
 import './NavMenu.css';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
 
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
@@ -15,33 +16,33 @@ export class NavMenu extends Component {
     };
   }
 
-  toggleNavbar () {
+  toggleNavbar() {
     this.setState({
       collapsed: !this.state.collapsed
     });
   }
 
-  render () {
+  render() {
     return (
       <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-          <Container>
-            <NavbarBrand tag={Link} to="/">ReactTest</NavbarBrand>
-            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow">
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-                </NavItem>
-              </ul>
-            </Collapse>
-          </Container>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand tag={Link} to="/">
+            <Media src={logo} alt="Rezultate Vot" />
+          </NavbarBrand>
+          <NavbarToggler className="mr-2 menu-toggle" onClick={this.toggleNavbar} />
+          <Collapse isOpen={!this.state.collapsed} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink tag={Link} className="text-white" to="/">ISTORIC VOT</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-white" to="/counter">PREZENȚA LA VOT</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-white" to="/fetch-data">DESPRE NOI</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
         </Navbar>
       </header>
     );

@@ -1,18 +1,8 @@
-﻿a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿nav {
+  background: linear-gradient(90.62deg, #EA8C42 2.42%, #413BB6 36.36%, #110D64 81.29%);
+  font-size: 20px;
 }
 
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.menu-toggle {
+  border: none;
 }
