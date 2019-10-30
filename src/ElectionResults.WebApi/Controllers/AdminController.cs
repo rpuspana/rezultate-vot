@@ -27,6 +27,12 @@ namespace ElectionResults.WebApi.Controllers
             return BadRequest(result.Error);
         }
 
+        [HttpGet("election-config")]
+        public ActionResult GetSettings()
+        {
+            return Ok(_electionConfigurationSource.GetConfig());
+        }
+
         [HttpPut("election-config")]
         public async Task<ActionResult> UpdateSettings([FromBody] ElectionsConfig config)
         {

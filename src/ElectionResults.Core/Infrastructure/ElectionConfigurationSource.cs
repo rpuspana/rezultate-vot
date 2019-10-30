@@ -26,7 +26,7 @@ namespace ElectionResults.Core.Infrastructure
         {
             var putParameterRequest = new PutParameterRequest
             {
-                Name = "/vote-results-test/settings/jobTimer",
+                Name = $"/{Consts.PARAMETER_STORE_NAME}/settings/jobTimer",
                 Value = newTimer,
                 Type = ParameterType.String,
                 Overwrite = true
@@ -41,7 +41,7 @@ namespace ElectionResults.Core.Infrastructure
         {
             var putParameterRequest = new PutParameterRequest
             {
-                Name = "/vote-results-test/settings/electionsConfig",
+                Name = $"/{Consts.PARAMETER_STORE_NAME}/settings/electionsConfig",
                 Value = JsonConvert.SerializeObject(config),
                 Type = ParameterType.String,
                 Overwrite = true
@@ -50,6 +50,11 @@ namespace ElectionResults.Core.Infrastructure
             if (response.HttpStatusCode == HttpStatusCode.OK)
                 return Result.Ok();
             return Result.Failure("Couldn't update the job timer");
+        }
+
+        public string GetConfig()
+        {
+            return _config.ElectionsConfig;
         }
 
         public List<ElectionResultsFile> GetListOfFilesWithElectionResults()

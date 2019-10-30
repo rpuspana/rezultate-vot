@@ -12,5 +12,7 @@ namespace ElectionResults.Core.Infrastructure
         List<ElectionResultsFile> GetListOfFilesWithElectionResults();
 
         Task<Result> UpdateElectionConfig(ElectionsConfig config);
+
+        string GetConfig();
     }
 }

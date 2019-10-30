@@ -1,5 +1,7 @@
+using System;
 using Amazon;
 using Amazon.DynamoDBv2;
+using Amazon.Extensions.Configuration.SystemsManager;
 using Amazon.Extensions.NETCore.Setup;
 using ElectionResults.Core.Infrastructure;
 using ElectionResults.Core.Repositories;
@@ -58,7 +60,6 @@ namespace ElectionResults.WebApi
                 Region = RegionEndpoint.EUCentral1
             });
             services.AddSingleton<IHostedService, ScheduleTask>();
-            // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
@@ -66,7 +67,6 @@ namespace ElectionResults.WebApi
             services.AddSignalR();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
