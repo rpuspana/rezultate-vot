@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import logo from '../images/logo.svg';
+import votLogo from '../../images/rezultateVot.svg';
 import './NavMenu.css';
 
 export class NavMenu extends Component {
@@ -27,7 +27,7 @@ export class NavMenu extends Component {
       <header>
         <Navbar color="light" light expand="md">
           <NavbarBrand tag={Link} to="/">
-            <Media src={logo} alt="Rezultate Vot" />
+            <Media src={votLogo} alt="Rezultate Vot" />
           </NavbarBrand>
           <NavbarToggler className="mr-2 menu-toggle" onClick={this.toggleNavbar} />
           <Collapse isOpen={!this.state.collapsed} navbar>
@@ -36,10 +36,10 @@ export class NavMenu extends Component {
                 <NavLink tag={Link} className="text-white" to="/">ISTORIC VOT</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="text-white" to="/counter">PREZENȚA LA VOT</NavLink>
+                <NavLink tag={Link} className="text-white" to="/">PREZENȚA LA VOT</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="text-white" to="/fetch-data">DESPRE NOI</NavLink>
+                <NavLink tag={Link} className="text-white" to="/">DESPRE NOI</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

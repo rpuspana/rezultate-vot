@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./scss/reset.css";
 import { Route } from "react-router";
 import { Layout } from "./components/Layout";
-import { ChartContainer } from "./components/CandidatesChart/index";
+import { ChartContainer } from "./components/CandidatesChart";
 import { FetchData } from "./components/FetchData";
 import { Counter } from "./components/Counter";
 
