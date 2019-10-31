@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Label, Input } from 'reactstrap';
-import data from './admin.json';
 
 const AdminPanel = () => {
-  const [config, setConfig] = useState(data); // TODO: load from api
+  const API_URL = '/api/settings/election-config';
+  const [config, setConfig] = useState({ Files: [], Candidates: [] });
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then(data => data.json())
+      .then(data => setConfig(data));
+  }, []);
 
   const save = () => {
-    // TODO: add api call
-    console.log(config);
+    fetch(API_URL, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(config),
+    });
   }
 
   const addFile = () => {
