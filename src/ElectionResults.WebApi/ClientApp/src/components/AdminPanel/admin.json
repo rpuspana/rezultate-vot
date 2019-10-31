@@ -1,0 +1,144 @@
+{
+  "Files": [
+    {
+      "URL": "https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_RO_EUP_PART.csv",
+      "Active": true,
+      "Name": null,
+      "ResultsType": 1,
+      "ResultsLocation": 0
+    },
+    {
+      "URL": "https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_SR_EUP_PART.csv",
+      "Active": true,
+      "Name": null,
+      "ResultsType": 1,
+      "ResultsLocation": 1
+    },
+    {
+      "URL": "https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_RO_EUP_FINAL.csv",
+      "Active": true,
+      "Name": null,
+      "ResultsType": 2,
+      "ResultsLocation": 0
+    },
+    {
+      "URL": "https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_SR_EUP_FINAL.csv",
+      "Active": true,
+      "Name": null,
+      "ResultsType": 2,
+      "ResultsLocation": 1
+    },
+    {
+      "URL": "https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_RO_EUP_PROV.csv",
+      "Active": true,
+      "Name": null,
+      "ResultsType": 0,
+      "ResultsLocation": 0
+    },
+    {
+      "URL": "https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_SR_EUP_PROV.csv",
+      "Active": true,
+      "Name": null,
+      "ResultsType": 0,
+      "ResultsLocation": 1
+    }
+  ],
+  "Candidates": [
+    {
+      "Id": "1",
+      "Name": "Candidate A",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c1.png",
+      "CsvId": "g1"
+    },
+    {
+      "Id": "2",
+      "Name": "Candidate B",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c2.png",
+      "CsvId": "g2"
+    },
+    {
+      "Id": "3",
+      "Name": "Candidate C",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c1.png",
+      "CsvId": "g3"
+    },
+    {
+      "Id": "4",
+      "Name": "Candidate D",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c2.png",
+      "CsvId": "g4"
+    },
+    {
+      "Id": "5",
+      "Name": "Candidate E",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c1.png",
+      "CsvId": "g5"
+    },
+    {
+      "Id": "6",
+      "Name": "Candidate F",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c2.png",
+      "CsvId": "g6"
+    },
+    {
+      "Id": "7",
+      "Name": "Candidate G",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c1.png",
+      "CsvId": "g7"
+    },
+    {
+      "Id": "8",
+      "Name": "Candidate H",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c2.png",
+      "CsvId": "g8"
+    },
+    {
+      "Id": "9",
+      "Name": "Candidate I",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c1.png",
+      "CsvId": "g9"
+    },
+    {
+      "Id": "10",
+      "Name": "Candidate J",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c2.png",
+      "CsvId": "g10"
+    },
+    {
+      "Id": "11",
+      "Name": "Candidate K",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c1.png",
+      "CsvId": "g11"
+    },
+    {
+      "Id": "12",
+      "Name": "Candidate L",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c2.png",
+      "CsvId": "g12"
+    },
+    {
+      "Id": "13",
+      "Name": "Candidate M",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c1.png",
+      "CsvId": "g13"
+    },
+    {
+      "Id": "14",
+      "Name": "Candidate N",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c2.png",
+      "CsvId": "g14"
+    },
+    {
+      "Id": "15",
+      "Name": "Candidate O",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c1.png",
+      "CsvId": "g15"
+    },
+    {
+      "Id": "16",
+      "Name": "Candidate P",
+      "ImageUrl": "https://code4-presidential-2019.s3.eu-central-1.amazonaws.com/c2.png",
+      "CsvId": "g16"
+    }
+  ]
+}
