@@ -182,6 +182,9 @@ orleans.codegen.cs
 
 /node_modules
 
+# We are using SASS CSS-preprocessor and it'sa best practice to keep build products (css) outside of the source control.
+src/**/*.css
+
 # RIA/Silverlight projects
 Generated_Code/
 
