@@ -1,0 +1,12 @@
+html {
+  font-size: 62.5%; }
+
+button {
+  cursor: pointer; }
+
+button:disabled {
+  cursor: default; }
+
+/* Create two equal columns that floats next to each other */
+.column {
+  background-color: red; }

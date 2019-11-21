@@ -1,0 +1,18 @@
+.footerNewsletterForm {
+    margin: 8px 0;
+}
+
+input[type=text] {
+    width: 45%;
+    padding: 8px 20px;
+    /* margin: 8px 0; */
+    /* box-sizing: border-box; */
+    border-radius: 4px;
+     font-weight: 400;
+    font-size: 15px;
+}
+  
+  ::placeholder {
+    font-weight: 400;
+    font-size:0.65em;
+  }
